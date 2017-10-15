@@ -1,0 +1,31 @@
+{
+  "name": "we-cli",
+  "version": "1.0.0",
+  "description": "The project depended on vue 2.x and webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "dev": "webpack --config webpack.config.dev.js",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.4.4"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^3.0.0-alpha.3",
+    "less-loader": "^4.0.5",
+    "url-loader": "^0.6.2",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.1.0"
+  }
+}
