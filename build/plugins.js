@@ -11,7 +11,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 let config = {}
 
-const configPlugins = [
+let configPlugins = [
+
+	// 提取公共文件
+	new webpack.optimize.CommonsChunkPlugin({
+		name: 'reset',
+		filename: 'vendor/common.js',
+		minChunks: 2
+	}),
 	
 	// 每次生成dist前先清空dist目录下的的内容
 	new CleanWebpackPlugin(['dist'], {

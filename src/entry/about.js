@@ -1,8 +1,8 @@
 import '../assets/less/reset.less';
 import Vue from 'vue';
-import index from '../pages/index.vue';
+import about from '../pages/about.vue';
 
 new Vue({
   el: '#app',
-  render: h => h(index)
+  render: h => h(about)
 })

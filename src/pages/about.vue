@@ -1,6 +1,6 @@
 <template>
 	
-	<div class="green"></div>
+	<div class="blue"></div>
 
 </template>
 
@@ -11,10 +11,9 @@
 
 <style lang='less'>
 	
-	.green{
-		display: flex;
-		background-color: green;
+	.blue{
+		background-color: blue;
 		width: 100px;
-		height: 100px;
+		height: 600px;
 	}
 </style>

@@ -1,24 +1,17 @@
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 let baseEntry = require('./build/entry');
 let baseOutput = require('./build/output');
 let basePlugins = require('./build/plugins');
 let baseServer = require('./build/devtool.js');
 
-const extractLess = new ExtractTextPlugin('css/reset.css');
-const extractVue = new ExtractTextPlugin('css/style.css');
-
 // 整合所有的plugin
 (() => {
 
-	const pluginArr = [extractLess, extractVue];
-
-	// Object.keys(baseEntry).forEach((dir) => {
-	// 	pluginArr.push(new ExtractTextPlugin('css/' + dir + '.css'))
-	// })
-
-	pluginArr.forEach((item) => {
-		basePlugins.push(item)
-	})
+	// 根据入口chunk生成对应的css文件
+	basePlugins.push(new ExtractTextPlugin({
+		filename: 'css/[name].css'
+	}))
 
 })()
 
@@ -32,7 +25,7 @@ module.exports = {
 			{
 				test: /\.less$/,
 				exclude: /node_modules/,
-				use: extractLess.extract(['css-loader', 'less-loader'])
+				use: ExtractTextPlugin.extract(['css-loader', 'less-loader'])
 			},
 			{
 				test: /\.vue$/,
@@ -47,8 +40,13 @@ module.exports = {
 				}
 			},
 			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader'
+			},
+			{
 				test: /\.(jpg|jpeg|png|gif)$/,
-				use: 'url-loader',
+				loaders: 'url-loader',
 				options: {
 					limit: 8192
 				}
@@ -61,5 +59,13 @@ module.exports = {
 		]
 	},
 	plugins: basePlugins,
+	resolve: {
+		extensions: ['.js', '.vue', '.less'],
+		alias: {
+			less$: path.resolve(__dirname, 'src/assets/less'),
+			components$: path.resolve(__dirname, 'src/components')
+		}
+	},
 	devServer: baseServer
+
 }

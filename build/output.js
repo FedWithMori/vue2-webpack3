@@ -8,7 +8,7 @@ const path = require('path');
 module.exports = {
 
 	path: path.resolve(__dirname, '../dist'),
-	// publicPath: 'we.cli:8081',
-	filename: 'js/[name].js?ver=[hash]'
+	// publicPath: 'http://static.xxx.com',
+	filename: 'js/[name].js?ver=[hash:6]'
 
 }
