@@ -26,7 +26,14 @@ let configPlugins = [
 	}),
 
 	// 设置热更新
-	new webpack.HotModuleReplacementPlugin()
+	new webpack.HotModuleReplacementPlugin(),
+
+	// 对js代码进行压缩
+	new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
 
 ]
 
@@ -36,7 +43,13 @@ Object.keys(entry).forEach((item) => {
 	config = {
 		filename: '../dist/html/' + item + '.html',
 		template: path.resolve(__dirname, '../src/index.html'),
-		chunks: [item]
+		chunks: [item],
+		minify: { 
+			// 移除HTML中的注释
+            removeComments: true, 
+            // 删除空白符与换行符
+            collapseWhitespace: true 
+        }
 	}
 
 	configPlugins.push(new HtmlWebpackPlugin(config));
